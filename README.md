@@ -11,7 +11,7 @@ This is modeled after the Claude Usage Tracker, but OpenAI/Codex accounting need
 
 ## Installation For Non-Technical Users
 
-This app runs locally on your own computer. It does not send your data anywhere.
+This app runs locally on your own computer. It does not send your data anywhere. It binds to `127.0.0.1`, which means it is available only from your own machine by default.
 
 ### Step 1: Install Python
 
@@ -162,6 +162,15 @@ User view -> Export -> Message Count report
 ```
 
 Leave the downloaded JSON files in `~/Downloads`, then click **Sync Reports**. The importer currently recognizes the daily workspace and daily user/session report shapes from these exports.
+
+## Privacy And Security
+
+- The app reads reports from your own machine and stores imported data in a local SQLite database named `usage.db`.
+- `usage.db`, Python cache files, virtual environments, and downloaded reports are ignored by Git and should not be committed.
+- The app does not ask for, store, or transmit OpenAI API keys, ChatGPT passwords, browser cookies, or GitHub credentials.
+- The dashboard runs on `127.0.0.1:5050` by default, so it is not exposed to your local network.
+- Flask debug mode is off by default. Developers can enable it temporarily with `FLASK_DEBUG=1`.
+- Imported credit CSVs may contain personal data such as names, emails, account IDs, and user IDs. Treat `usage.db` and downloaded reports as private files.
 
 ## Methodology
 

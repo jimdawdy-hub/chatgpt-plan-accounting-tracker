@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, jsonify, render_template, request
 from flask_cors import CORS
 
@@ -176,4 +178,5 @@ if __name__ == "__main__":
     init_db(conn)
     conn.close()
     import_reports()
-    app.run(host="127.0.0.1", port=5050, debug=True)
+    debug = os.environ.get("FLASK_DEBUG", "0") == "1"
+    app.run(host="127.0.0.1", port=5050, debug=debug)
